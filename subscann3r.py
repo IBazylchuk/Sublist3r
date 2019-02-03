@@ -71,7 +71,6 @@ class SubScann3r:
             print(self.logger.Y + "[-] verbosity is enabled, will show the subdomains results in realtime" + self.logger.W)
 
 
-
         chosenEnums = []
 
         if self.scan_flags.Engines is None:
@@ -84,10 +83,10 @@ class SubScann3r:
 
         # Start the engines enumeration
         enums = [enum(self.domain, [], q=subdomains_queue, silent=self.scan_flags.Silent, logger=self.logger) for enum in chosenEnums]
-        for enum in enums:
-            enum.start()
-        for enum in enums:
-            enum.join()
+        for e in enums:
+            e.run()
+        for e in enums:
+            e.join()
 
         subdomains = set(subdomains_queue)
         for subdomain in subdomains:
