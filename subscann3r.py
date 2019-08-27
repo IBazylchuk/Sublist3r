@@ -84,7 +84,7 @@ class SubScann3r:
         # Start the engines enumeration
         enums = [enum(self.domain, [], q=subdomains_queue, silent=self.scan_flags.Silent, logger=self.logger) for enum in chosenEnums]
         for e in enums:
-            e.run()
+            e.start()
         for e in enums:
             e.join()
 
